@@ -1,22 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+// Headers مستعملين env
 const cryptoApiHeaders = {
-  'x-rapidapi-key': '3de4c24560msh8a13ec12d3474fbp1efe8djsne445f6b03ca1',
-  'x-rapidapi-host': 'coinranking1.p.rapidapi.com'
+  'x-rapidapi-host': process.env.REACT_APP_CRYPTO_RAPIDAPI_HOST,
+  'x-rapidapi-key': process.env.REACT_APP_CRYPTO_RAPIDAPI_KEY,
 };
 
-const baseUrl = 'https://coinranking1.p.rapidapi.com';
+// دالة صغيرة باش نعملو request
 const createRequest = (url) => ({ url, headers: cryptoApiHeaders });
 
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
 
+  // baseQuery يستعمل URL من env
   baseQuery: fetchBaseQuery({
-    baseUrl: baseUrl,
+    baseUrl: process.env.REACT_APP_CRYPTO_API_URL,
   }),
 
   endpoints: (builder) => ({
-
     getCryptos: builder.query({
       query: (count) => createRequest(`/coins?limit=${count}`),
     }),
@@ -30,21 +31,21 @@ export const cryptoApi = createApi({
         createRequest(`/coin/${coinId}/history?timeperiod=${timeperiod}`),
     }),
 
-    // 🔥 API CoinGecko corrigée
-    getExchanges: builder.query({
+    // Exchanges (Note: Premium plan)
+   getExchanges: builder.query({
       query: () => ({
         url: 'https://api.coingecko.com/api/v3/exchanges',
         method: 'GET',
       }),
       transformResponse: (response) => {
-        console.log('🔥 API Response:', response); // Debug ici
+        console.log('🔥 Raw API Response:', response);
         return response;
       },
     }),
-
   }),
 });
 
+// Export ديال hooks باش نستعملهم فـ Components
 export const {
   useGetCryptosQuery,
   useGetCryptoDetailsQuery,

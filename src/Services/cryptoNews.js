@@ -1,9 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const API_KEY = '85e97ae7457b4fd093944ff6d56aadd6'; 
-
-const baseUrl = 'https://newsapi.org/v2';
-
+const baseUrl = process.env.REACT_APP_NEWSAPI_URL;
+const API_KEY= process.env.REACT_APP_NEWSAPI_KEY;
 export const cryptoNewsApi = createApi({
   reducerPath: 'cryptoNewsApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
