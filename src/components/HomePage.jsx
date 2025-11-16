@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 import {useGetCryptosQuery} from '../Services/cryptoApi'
 import Cryptocurrencies from './Cryptocurrencies';
 import News from './News';
-import CryptoList from './CryptoList';
-import NewsList from './NewsList';
+
 const { Title } = Typography;
 const HomePage = () => {
  
@@ -16,11 +15,7 @@ const HomePage = () => {
   if(isFetching) return 'Loading....'
   return (
     <>
-    <div>
-      <h1>Crypto Dashboard</h1>
-      <CryptoList />
-      <NewsList />
-    </div>
+    
       <Title level={2} className="heading">Global Crypto Stats</Title>
       <Row>
         <Col span={12}><Statistic title="Total Cryptocurrencies" value={globalState?.total} /></Col>
