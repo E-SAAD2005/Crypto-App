@@ -2,10 +2,13 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route,Link } from 'react-router-dom';
 import {Layout,Typography,Space} from 'antd';
 import { Navbar,HomePage,Exchanges, Cryptocurrencies,CryptoDeatails,News} from './components';
+
 import './App.css';
 const App = () => {
   return (
+    
     <div className="app">
+      
         <div className="navbar">
           <Navbar/>
         </div>

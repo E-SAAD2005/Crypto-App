@@ -17,6 +17,7 @@ const News = ({ simplified }) => {
     newsCategory, 
     count: simplified ? 6 : 50 
   });
+  
 
  
 
